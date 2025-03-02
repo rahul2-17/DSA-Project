@@ -11,5 +11,5 @@ class Node{
     courseInfo* courses=new courseInfo[noOfSubs];
     Node* left;
     Node* right;
-    int height;
+    int height();
 };
