@@ -12,4 +12,5 @@ class Node{
     Node* left;
     Node* right;
     int height();
+    int balancing_factor();
 };
