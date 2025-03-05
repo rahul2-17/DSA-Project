@@ -4,6 +4,7 @@
 using namespace std;
 
 class Node{
+    public:
     int RollNo;
     string name;
     float CGPA;
