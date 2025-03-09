@@ -1,13 +1,21 @@
 #include "node.h"
+#include <cmath>
 
-int Node::height(Node* root){
-		if(this.left==NULL && this.right==NULL){
+int Node::height()
+{
+	if (this == NULL)
 		return 0;
-		
-		return max(height(root->left), height(root->right)) +1;
-		
-int Node::balancing_factor(){
-		return abs(height(left->height()-height(right->height());
-	}
+
+	int leftHeight = (left == NULL) ? 0 : left->height();
+	int rightHeight = (right == NULL) ? 0 : right->height();
+
+	return max(leftHeight, rightHeight);
 }
 
+int Node::balancing_factor()
+{
+	int leftHeight = (left == NULL) ? 0 : left->height();
+	int rightHeight = (right == NULL) ? 0 : right->height();
+
+	return (abs(leftHeight - rightHeight));
+}
