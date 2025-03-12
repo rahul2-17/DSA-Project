@@ -67,19 +67,39 @@ Node *AVL::right_left_rotation(Node *x)
         x->right = right_rotation(x->right);
 
         return left_rotation(x);
-}
-
-void AVL::balance_tree(Node *&root)
+}void AVL::balance_tree(Node *&root)
 {
-        if (root == NULL)
+    if (root == NULL)
+    {
+        return;
+    }
+
+    int balFactor = root->balancing_factor();
+
+    // Left heavy
+    if (balFactor > 1)
+    {
+        if (root->left && root->left->balancing_factor() >= 0)
         {
-                return;
+            root = right_rotation(root); // Left-Left case
         }
-
-        int balFactor = root->balancing_factor();
-
-        if (balFactor < 1)
-                return;
+        else
+        {
+            root = left_right_rotation(root); // Left-Right case
+        }
+    }
+    // Right heavy
+    else if (balFactor < -1)
+    {
+        if (root->right && root->right->balancing_factor() <= 0)
+        {
+            root = left_rotation(root); // Right-Right case
+        }
+        else
+        {
+            root = right_left_rotation(root); // Right-Left case
+        }
+    }
 }
 
 Node* AVL::search(Node* root, int rollNo)
