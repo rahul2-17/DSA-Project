@@ -81,3 +81,74 @@ void AVL::balance_tree(Node *&root)
         if (balFactor < 1)
                 return;
 }
+
+Node* AVL::search(Node* root, int rollNo)
+{
+        if(root == NULL)
+        {
+                return NULL;
+        }
+        
+        if(root->data == rollNo)
+        {
+                return root;
+        }
+
+        if(root->data < rollNo)
+        {
+                return search(root->left, rollNo);
+        }
+
+        else return search(root->right, rollNo);
+}
+
+void AVL::deleteNode(Node* &root, int rollNo){
+        Node* loc = search(root, rollNo);
+
+        if(loc == NULL)
+                 return;
+
+        if(loc->p == NULL){
+                
+        }
+
+        //no children
+        if(!loc->left && !loc->right){
+                loc->p->left = NULL;
+                loc->p->right = NULL;
+                delete  loc;
+        }
+
+        //only 1 child
+
+        if(loc->data >loc->p->data){
+                if(!loc->left && loc->right){
+                        loc->p->right = loc->right;
+                        delete loc;
+                }
+                        
+                else if(loc->left && !loc->right){
+                        loc->p->right = loc->left;
+                        delete loc;
+                }
+
+                else if(loc->left && loc->right){
+                        
+                }
+        }
+
+        if(loc->data < loc->p->data){
+                if(!loc->left && loc->right){
+                        loc->p->left = loc->right;
+                        delete loc;
+                }
+                        
+                else if(loc->left && !loc->right){
+                        loc->p->left = loc->left;
+                        delete loc;
+                }
+        }
+
+        //2 children
+                
+}
