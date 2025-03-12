@@ -13,5 +13,5 @@ class AVL{
         void balance_tree(Node* &root);
         
         Node* search(Node* root, int rollNo);
-        // void 
+        Node* deleteNode(Node* root, int rollNo);
 };
